@@ -16,6 +16,12 @@ class MainActivity : AppCompatActivity() {
 
     fun onEventNumber(view: View) {
 
+        if(isNewOp){
+            editText.setText("")
+        }
+
+        isNewOp = false
+
         val entryData = editText.text
 
         val buSelect = view as Button
@@ -65,5 +71,59 @@ class MainActivity : AppCompatActivity() {
         editText.setText(buClickValue)
 
 
+    }
+
+    var op = "*"
+
+    var oldNumber = ""
+    var isNewOp = true
+
+    fun onEventOp(view: View) {
+        val buSelect = view as Button
+
+        when(buSelect.id) {
+            buttondiv.id -> {
+
+                op = "/"
+
+            }
+            buttonmulti.id -> {
+                op = "*"
+            }
+            buttonsuma.id -> {
+                op = "+"
+            }
+            buttonresta.id -> {
+                op = "-"
+            }
+        }
+
+        oldNumber = editText.text.toString()
+
+        isNewOp = true
+
+    }
+
+    fun onEventEqual(view: View) {
+        val newNumber = editText.text.toString()
+        var finalNumber: Double?= null
+        when(op){
+            "*" -> {
+
+                finalNumber = oldNumber.toDouble() * newNumber.toDouble()
+            }
+            "/" -> {
+                finalNumber = oldNumber.toDouble() / newNumber.toDouble()
+            }
+            "+" -> {
+                finalNumber = oldNumber.toDouble() + newNumber.toDouble()
+            }
+            "-" -> {
+                finalNumber = oldNumber.toDouble() - newNumber.toDouble()
+            }
+        }
+
+        editText.setText(finalNumber.toString())
+        isNewOp = true
     }
 }
