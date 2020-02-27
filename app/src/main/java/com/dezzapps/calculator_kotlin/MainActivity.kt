@@ -126,4 +126,17 @@ class MainActivity : AppCompatActivity() {
         editText.setText(finalNumber.toString())
         isNewOp = true
     }
+
+    fun buPorcent(view: View) {
+        var number: Double = editText.text.toString().toDouble()/100
+
+
+        editText.setText(number.toString())
+
+    }
+
+    fun buClean(view: View) {
+        editText.setText("0")
+        isNewOp = true
+    }
 }
